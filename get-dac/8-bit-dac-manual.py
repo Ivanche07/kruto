@@ -27,3 +27,7 @@ try:
 finally:
     g.output(dac_bits, 0)
     g.cleanup()
+    '''Traceback (most recent call last):
+  File "/home/b03-501/Repositories/kruto/get-dac/8-bit-dac-manual.py", line 22, in <module>
+    g.output(dac_bits[i], number[i])
+TypeError: 'int' object is not subscriptable'''
