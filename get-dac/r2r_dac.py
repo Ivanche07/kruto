@@ -18,4 +18,19 @@ class R2R_DAC:
             print(f"Напряжение выходит за динамический диапазон ЦАП (0.00 - {dynamic_range:.2f} В)")
             print("Устанавлниваем 0.0 В")
             return
-        set_number(int(voltage / self.dynamic_range * 255))
+        self.set_number(int(voltage / self.dynamic_range * 255))
+
+if __name__ == "__main__":
+    try:
+        dac = R2R_DAC([16,12,25,17,27,23,22,24], 3.3, True)
+        
+        while True:
+            try:
+                voltage = float(input("Введите напряжение в Вольтах: "))
+                dac.set_voltage(voltage)
+
+            except ValueError:
+                print("Вы ввели не число. Попробуйте ещё раз\n")
+
+    finally:
+        dac.deinit()
