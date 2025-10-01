@@ -12,17 +12,14 @@ def voltage_to_number(voltage):
     return int(voltage / dynamic_range * 255)
 def number_to_dac(number):
     number = [int(element) for element in bin(number)[2:].zfill(8)]
-def f(number, dac_bits):
-    for i in len(number):
-        if number[i]:
-            g.output(dac_bits[number[i]],1)
 try:
     while True:
         try:
             voltage = float(input("Введите напряжение в Вольтах: "))
             number = voltage_to_number(voltage)
             number_to_dac(number)
-            f(number)
+            for i in range(8):
+                g.output(dac_bits[i], number[i])
 
         except ValueError:
             print("Вы ввели не число. Попробуйте ещё раз\n")
